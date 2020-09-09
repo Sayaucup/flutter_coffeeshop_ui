@@ -1,13 +1,13 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:coffe/widget/nearshop.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttericon/elusive_icons.dart';
 import 'package:fluttericon/entypo_icons.dart';
-import 'package:fluttericon/font_awesome5_icons.dart';
-import 'package:fluttericon/font_awesome_icons.dart';
-import 'package:fluttericon/iconic_icons.dart';
+import 'package:fluttericon/linearicons_free_icons.dart';
+import 'package:fluttericon/maki_icons.dart';
+import 'package:fluttericon/modern_pictograms_icons.dart';
 import 'package:fluttericon/typicons_icons.dart';
+import 'package:fluttericon/zocial_icons.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -33,9 +33,9 @@ class _HomeState extends State<Home> {
       },
       child: Container(
         height: 40,
-        width: MediaQuery.of(context).size.width / 3.5,
+        width: MediaQuery.of(context).size.width / 3.7,
         decoration: BoxDecoration(
-            color: selectedd == i ? Color(0xff954010) : Color(0xffFCFAF8),
+            color: selectedd == i ? Color(0xff954010) : Color(0xffF5EDDC),
             borderRadius: BorderRadius.circular(8)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -72,13 +72,15 @@ class _HomeState extends State<Home> {
         SystemUiOverlayStyle(statusBarColor: Colors.transparent));
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: Color(0xffF4F4F4),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        leading: Icon(
-          Icons.sort,
-          color: Colors.black54,
+        leading: InkWell(
+          onTap: () {},
+          child: Icon(
+            Icons.sort,
+            color: Colors.black54,
+          ),
         ),
         actions: <Widget>[
           Padding(
@@ -88,7 +90,7 @@ class _HomeState extends State<Home> {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: <Widget>[
                 Text(
-                  'Joshua Owen',
+                  'Sayaucup',
                   style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.w500,
@@ -108,7 +110,7 @@ class _HomeState extends State<Home> {
                       width: 3,
                     ),
                     Text(
-                      'Newyork, United States',
+                      'Bantul, Yogyakarta',
                       style: TextStyle(
                         color: Colors.black38,
                         fontSize: 11,
@@ -131,7 +133,6 @@ class _HomeState extends State<Home> {
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.only(left: 20),
@@ -157,7 +158,7 @@ class _HomeState extends State<Home> {
                 ),
                 Card(
                   elevation: 3,
-                  margin: EdgeInsets.only(top: 10),
+                  margin: EdgeInsets.only(top: 10, right: 20),
                   child: Container(
                     padding: EdgeInsets.symmetric(horizontal: 15),
                     height: 45,
@@ -191,18 +192,13 @@ class _HomeState extends State<Home> {
                 ),
                 Padding(
                     padding: const EdgeInsets.only(top: 20, right: 20),
-                    child: SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           category('Coffee', 'assets/coffeee).png', 1),
-                          SizedBox(
-                            width: 10,
-                          ),
                           category('Snack', 'assets/taco.png', 2),
-                          SizedBox(
-                            width: 10,
-                          ),
                           category('Cake', 'assets/cake-pop.png', 3),
                         ],
                       ),
@@ -224,7 +220,48 @@ class _HomeState extends State<Home> {
               ],
             ),
           ),
-          NearShopp(),
+          Expanded(child: NearShopp()),
+          Align(
+            alignment: Alignment.center,
+            child: Stack(
+              children: <Widget>[
+                Container(
+                  padding: EdgeInsets.only(right: 3),
+                  child: Icon(
+                    LineariconsFree.cart,
+                    size: 20,
+                    color: Colors.white,
+                  ),
+                  height: 30,
+                  width: 60,
+                  decoration: BoxDecoration(
+                      color: Color(0xff954010),
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(100),
+                        topRight: Radius.circular(100),
+                      )),
+                ),
+                Positioned(
+                  top: 5,
+                  left: 27,
+                  child: Container(
+                    alignment: Alignment.center,
+                    child: Text(
+                      '0',
+                      style: TextStyle(
+                          color: Color(0xff954010),
+                          fontSize: 10,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    height: 13,
+                    width: 13,
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle, color: Colors.white),
+                  ),
+                ),
+              ],
+            ),
+          )
         ],
       ),
     );

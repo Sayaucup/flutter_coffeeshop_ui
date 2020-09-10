@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttericon/elusive_icons.dart';
 import 'package:fluttericon/entypo_icons.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class Shop {
   final String img;
@@ -48,31 +49,18 @@ class _NearShoppState extends State<NearShopp> {
         '10 Mints'),
   ];
   bool love = false;
-  Widget lovee(bool i) {
-    return Align(
-        alignment: Alignment.topRight,
-        child: InkWell(
-          onTap: () {
-            setState(() {
-              love = i;
-            });
-          },
-          child: Container(
-            height: 25,
-            width: 25,
-            decoration: BoxDecoration(
-                shape: BoxShape.circle, color: Colors.black.withOpacity(0.9)),
-            child: love == i
-                ? Icon(Elusive.heart, size: 12, color: Colors.red)
-                : Icon(Elusive.heart_empty, size: 12, color: Colors.white),
-          ),
-        ));
+  void q() {
+    Fluttertoast.showToast(
+      msg: "Added to your favorites",
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.BOTTOM,
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 190,
+      height: 170,
       child: ListView(
         padding: EdgeInsets.symmetric(horizontal: 10),
         shrinkWrap: true,
@@ -99,7 +87,7 @@ class _NearShoppState extends State<NearShopp> {
                           width: MediaQuery.of(context).size.width / 1.8,
                           height: 120,
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15),
+                              borderRadius: BorderRadius.circular(10),
                               image: DecorationImage(
                                 image: NetworkImage(e.img),
                                 fit: BoxFit.cover,
@@ -107,7 +95,30 @@ class _NearShoppState extends State<NearShopp> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             crossAxisAlignment: CrossAxisAlignment.end,
-                            children: <Widget>[lovee(true)],
+                            children: <Widget>[
+                              Align(
+                                  alignment: Alignment.topRight,
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      setState(() {
+                                        love = !love;
+                                        q();
+                                      });
+                                    },
+                                    child: Container(
+                                      height: 25,
+                                      width: 25,
+                                      decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          color: Colors.black.withOpacity(0.9)),
+                                      child: love
+                                          ? Icon(Elusive.heart,
+                                              size: 12, color: Colors.red)
+                                          : Icon(Elusive.heart_empty,
+                                              size: 12, color: Colors.white),
+                                    ),
+                                  ))
+                            ],
                           )),
                       Align(
                         alignment: Alignment.bottomRight,
